@@ -31,13 +31,33 @@ namespace lab_1
             a = b;
             b = (int)a;
             // operatory rzutowania
-            decimal amount = money;
+            //decimal amount = money;
             double cost = (double)money;
             float price = (float)money;
-            Console.WriteLine(amount);
+            //Console.WriteLine(amount);
             Console.WriteLine(cost);
             Console.WriteLine(price);
+            // to string
+            Console.WriteLine("ToString");
+            Console.WriteLine(money.ToString());
 
+            money.Equals(cost);
+            Money[] pricies =
+            {
+                Money.Of(11,Currency.PLN),
+                Money.Of(12,Currency.PLN),
+                Money.Of(16,Currency.USD),
+                Money.Of(17,Currency.USD),
+                Money.Of(18,Currency.USD),
+                Money.Of(12,Currency.EUR),
+
+            };
+            Console.WriteLine("Sort");
+            Array.Sort(pricies);
+            foreach (var m in pricies)
+            {
+                Console.WriteLine(m.ToString());
+            }
         }
     }
 }
@@ -81,15 +101,17 @@ class Person
                 throw new ArgumentOutOfRangeException("Imię zbyt krótkie");
             }
         }
+
+     
     }
 
     public enum Currency
     {
-        PLN = 1,
-        USD = 2,
-        EUR = 3
+        PLN = 2,
+        USD = 3,
+        EUR = 1
     }
-    public class Money
+    public class Money:IEquatable<Money>, IComparable<Money>
     {
         private readonly decimal _value;
         private readonly Currency _Currency;
@@ -167,6 +189,42 @@ class Person
         {
             return (float)money.value;
         }
+        public override string ToString()
+        {
+            return $"Value:{_value} ,Currency:{_Currency}";
+
+        }
+
+        public override bool Equals(object obj)
+        {
+            return obj is Money money &&
+                   _value == money._value &&
+                   _Currency == money._Currency;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(_value, _Currency);
+        }
+        public bool Equals (Money other)
+        {
+            return _value == other._value && 
+                _Currency == other._Currency;
+        }
+
+        public int CompareTo(Money other)
+        {
+            int result = _Currency.CompareTo(other._Currency);
+            if (result == 0)
+            {
+                return -_value.CompareTo(other._value);
+
+            }
+            else
+            {
+                return result;
+            }
+        }        
     }
 
 
