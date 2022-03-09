@@ -16,7 +16,7 @@ namespace lab_1
             string name = "adam";
             string v = name.Substring(0, 2);
             Console.WriteLine("adam" == name);
-            Money money = Money.Of(10, Currency.PLN);
+            Money money = Money.Of(10m, Currency.PLN);
             //money *5->*(money,5)
             Money result = money * 5;
             Console.WriteLine(result.value);
@@ -26,9 +26,17 @@ namespace lab_1
             Console.WriteLine(money==Money.Of(10,Currency.PLN));
             Console.WriteLine(money != Money.Of(10, Currency.PLN));
             long a = 10l;
+            a = 10000000000000000L;
             int b = 5;
             a = b;
-            b = a;
+            b = (int)a;
+            // operatory rzutowania
+            decimal amount = money;
+            double cost = (double)money;
+            float price = (float)money;
+            Console.WriteLine(amount);
+            Console.WriteLine(cost);
+            Console.WriteLine(price);
 
         }
     }
@@ -147,7 +155,20 @@ class Person
 
             return !(a == b);
         }
+        public static implicit operator decimal(Money money)
+        {
+            return money.value;
+        }
+        public static explicit operator double(Money money)
+        {
+            return (double)money.value;
+        }
+        public static explicit operator float(Money money)
+        {
+            return (float)money.value;
+        }
     }
+
 
 
 }
