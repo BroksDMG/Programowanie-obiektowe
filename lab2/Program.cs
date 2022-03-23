@@ -18,38 +18,38 @@ namespace lab_2
             return $"Vehicle{{ Weight: {Weight}, MaxSpeed: {MaxSpeed}, Mileage: {_mileage} }}";
         }
     }
-    public abstract class Scooter: Vehicle
+    public abstract class Scooter : Vehicle
     {
         public bool isDriver { get; set; }
     }
     public class ElecticScooter : Scooter
     {
         public int BatteriesLevel { get; set; }
-        public double MaxRange ;
+        public double MaxRange;
         public bool isCharger;
         public int ChargeBaterries(int time)
         {
 
-            if  (isCharger&&BatteriesLevel!=100)
+            if (isCharger && BatteriesLevel != 100)
             {
                 BatteriesLevel += time * 3;
             }
             BatteriesLevel = Math.Min(BatteriesLevel, 100);
             return BatteriesLevel;
         }
-        
-            
+
+
         public override decimal Drive(int distance)
         {
             MaxRange = BatteriesLevel / 3;
-            
-            if(isDriver&& distance < MaxRange)
+
+            if (isDriver && distance < MaxRange)
             {
                 _mileage += distance;
-                BatteriesLevel -= distance*3;
+                BatteriesLevel -= distance * 3;
                 return (decimal)(distance / (double)MaxSpeed);
             }
-                return -1;
+            return -1;
 
         }
         public override string ToString()
@@ -76,7 +76,7 @@ namespace lab_2
             return $"Car{{Weight: {Weight}, MaxSpeed: {MaxSpeed}, Mileage: {_mileage}}}";
         }
     }
-    public class Bicycle : Vehicle 
+    public class Bicycle : Vehicle
     {
         public bool isDriver { get; set; }
         public override decimal Drive(int distance)
@@ -93,8 +93,8 @@ namespace lab_2
             return $"Bicycle{{Weight: {Weight}, MaxSpeed: {MaxSpeed}, Mileage: {_mileage}}}"; ;
         }
     }
-       
-    public  class Cooker : IElectric
+
+    public class Cooker : IElectric
     {
         public int supply()
         {
@@ -207,7 +207,7 @@ namespace lab_2
             return 0;
         }
 
-       
+
     }
     public class Amphibian : Vehicle, Driveable, Swimmingable
     {
@@ -395,3 +395,4 @@ namespace lab_2
         }
 
     }
+}
