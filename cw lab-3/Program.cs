@@ -124,12 +124,5 @@ public class Exercise3
     //{("adam", 3), ("ewa", 1), ("ola", 2)}
     //co oznacza, że "adam" występuje 3 raz, "ewa" 1 raz a "ola" 2
     //W obu tablicach moga pojawić się wartości null, które też muszą być zliczane
-    public static (T, int)[] countElements<T>(T[] arr, params T[] elements)
-    {
-        var arraum = new (T, int)[elements.Length];
-        for (int i = 0; i < arr.Length; i++)
-        {
-
-        }
-    }
+    
 }

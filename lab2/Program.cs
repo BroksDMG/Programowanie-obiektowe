@@ -110,26 +110,26 @@ namespace lab_2
         static void Main(string[] args)
         {
 
-            //Car car = new Car() { isEngineWorking = true, isFuel = true, MaxSpeed = 100 };
+            Car car = new Car() { isEngineWorking = true, isFuel = true, MaxSpeed = 100 };
 
-            //Vehicle vehicle = car;
-            //Vehicle anotherVehicle = new Bicycle();
-            //Vehicle[] vehicles = new Vehicle[3];
-            //vehicles[0] = car;
-            //vehicles[1] = anotherVehicle;
-            //vehicles[2] = new Car();
-            //foreach (Vehicle v in vehicles)
-            //{
-            //    Console.WriteLine(v);
-            //    Console.WriteLine(v.Drive(14));
-            //    if (v is Car)
-            //    {
-            //        Car acurrentCar = v as Car;
-            //    }
-            //}
-            //IElectric[] electrics = new IElectric[3];
+            Vehicle vehicle = car;
+            Vehicle anotherVehicle = new Bicycle();
+            Vehicle[] vehicles = new Vehicle[3];
+            vehicles[0] = car;
+            vehicles[1] = anotherVehicle;
+            vehicles[2] = new Car();
+            foreach (Vehicle v in vehicles)
+            {
+                Console.WriteLine(v);
+                Console.WriteLine(v.Drive(14));
+                if (v is Car)
+                {
+                    Car acurrentCar = v as Car;
+                }
+            }
+            IElectric[] electrics = new IElectric[3];
 
-            //electrics[1] = new Cooker();
+            electrics[1] = new Cooker();
             //IAgregate agregate = new IntAggregate();
             //IIterator iterator = agregate.createIterator();
 
@@ -137,39 +137,51 @@ namespace lab_2
             //{
             //    Console.WriteLine(iterator.GetNext());
             //}
-            //List<string> names = new List<string>()
-            //{
-            //    "Adam",
-            //    "Ewa",
-            //    "Karol"
-            //};
-            //List<string>.Enumerator enumerator = names.GetEnumerator();
-            //while (enumerator.MoveNext())
-            //{
-            //    Console.WriteLine(enumerator.Current);
-            //}
-            //foreach (var name in names)//While(enumerator.MoveNext())
-            //{
-            //    Console.WriteLine(name);//enumerator.Current
-            //}
-            //Flyable[] flyables = new Flyable[3];
-            //flyables[0] = new Hydroplane();
-            //flyables[1] = new Duck();
-            //flyables[2] = new Wasp();
-            //int someVehcielscounter = 0;
-            //foreach (var someVehicle in flyables)
-            //{
-            //    if(someVehicle is Swimmingable)
-            //    {
-            //        someVehcielscounter++;
-            //    }
-            //}
-            //Console.WriteLine($"Liczba obiektów implementujących jednocześnie interfejsy Swimmingable i flyable wynosi: {someVehcielscounter}");
-
-            IAgregate aggregate = new IntAggregate();
-            for (var iterator = aggregate.createIterator(); iterator.HasNext();)
+            List<string> names = new List<string>()
             {
-                Console.WriteLine(iterator.GetNext());
+                "Adam",
+                "Ewa",
+                "Karol"
+            };
+            List<string>.Enumerator enumerator = names.GetEnumerator();
+            while (enumerator.MoveNext())
+            {
+                Console.WriteLine(enumerator.Current);
+            }
+            foreach (var name in names)//While(enumerator.MoveNext())
+            {
+                Console.WriteLine(name);//enumerator.Current
+            }
+            Flyable[] flyables = new Flyable[3];
+            flyables[0] = new Hydroplane();
+            flyables[1] = new Duck();
+            flyables[2] = new Wasp();
+            int someVehcielscounter = 0;
+            foreach (var someVehicle in flyables)
+            {
+                if (someVehicle is Swimmingable)
+                {
+                    someVehcielscounter++;
+                }
+            }
+            Console.WriteLine($"Liczba obiektów implementujących jednocześnie interfejsy Swimmingable i flyable wynosi: {someVehcielscounter}");
+
+
+
+
+            Console.WriteLine("Reverse int iteration");
+            IntAggregate aggregate1 = new IntAggregate();
+            IIterator iterator1 = aggregate1.createIterator();
+            while (iterator1.HasNext())
+            {
+                Console.WriteLine(iterator1.GetNextReverse());
+            }
+            Console.WriteLine("Even first int iteration");
+            IntAggregate aggregate2 = new IntAggregate();
+            IIterator iterator2 = aggregate2.createIterator();
+            while (iterator2.HasNext())
+            {
+                Console.WriteLine(iterator2.EvenOdd());
             }
 
         }
@@ -278,98 +290,108 @@ namespace lab_2
         }
     }
 
-    class IntAggregate : IAgregate
+    interface IAggregate
     {
+        IIterator createIterator();
+    }
 
-        internal double[,] array = {
-            {1,2},
-            {3,4 },
-            {5,6 },
-            {7,8 }
-        };
+    interface IIterator
+    {
+        int GetFirst();
+        bool HasNext();
+        int GetNext();
+        int GetNextReverse();
+        int EvenOdd();
+        /*int DividableCompletly(int k);*/
+    }
+
+    class IntAggregate : IAggregate
+    {
+        internal int _a = 1;
+        internal int _b = 2;
+        internal int _c = 3;
+        internal int _d = 4;
+        internal int _e = 5;
+        internal int _f = 6;
+
         public IIterator createIterator()
         {
-           return new IntItertor(this);
+            return new IntIterator(this);
         }
     }
-   
-    //class IntItertor : IIterator
-    //{
-    //    private int count = 0;
-    //    private IntAggregate _aggregate;
 
-    //    public IntItertor(IntAggregate aggregate)
-    //    {
-    //        _aggregate = aggregate;
-    //    }
-
-    //    public int GetNext()
-    //    {
-           
-            
-    //        if (count == 3)
-    //        {
-    //            return _aggregate._c;
-    //        }
-    //        switch (++count)
-    //        {
-    //            case 1:
-    //                return _aggregate._a;
-    //            case 2:
-    //                return _aggregate._b;
-    //            case 3:
-    //                return _aggregate._c;
-    //            default:
-    //                throw new Exception();
-    //        }
-    //    }
-
-    //    public bool HasNext()
-    //    {
-    //        return count < 3;
-    //    }
-    //}
-    class IntItertor : IIterator
+    class IntIterator : IIterator
     {
-        private int count = 0;
         private IntAggregate _aggregate;
+        private int count = 0;
 
-        public IntItertor(IntAggregate aggregate)
+        public IntIterator(IntAggregate aggregate)
         {
             _aggregate = aggregate;
         }
 
+        public int GetFirst()
+        {
+            return _aggregate._a;
+        }
+
         public int GetNext()
         {
-
-            for (int i = 0; i < _aggregate.array.GetLength(0); i++)
+            if (count == 6)
             {
-                for (int j = 0; j < _aggregate.array.GetLength(1); j++)
-                {
-                    count--;
-
-                    Console.WriteLine(_aggregate.array[i,j]);
-                }
+                return _aggregate._f;
             }
-            return (int)_aggregate.array[count, count++];
-
+            switch (++count)
+            {
+                case 1: return _aggregate._a;
+                case 2: return _aggregate._b;
+                case 3: return _aggregate._c;
+                case 4: return _aggregate._d;
+                case 5: return _aggregate._e;
+                case 6: return _aggregate._f;
+                default: throw new Exception();
+            }
         }
 
         public bool HasNext()
         {
-          
-            return count < _aggregate.array.Length;
+            return count < 6;
         }
-    }
 
-    interface IAgregate
-    {
-        IIterator createIterator();
-    }
-    interface IIterator
-    {
+        public int GetNextReverse()
+        {
+            if (count == 6)
+            {
+                return _aggregate._a;
+            }
+            switch (++count)
+            {
+                case 1: return _aggregate._f;
+                case 2: return _aggregate._e;
+                case 3: return _aggregate._d;
+                case 4: return _aggregate._c;
+                case 5: return _aggregate._b;
+                case 6: return _aggregate._a;
+                default: throw new Exception();
+            }
+        }
 
-        bool HasNext();
-        int GetNext();
+        public int EvenOdd()
+        {
+            if (count == 6)
+            {
+                return _aggregate._e;
+            }
+            switch (++count)
+            {
+                case 1: return _aggregate._b;
+                case 2: return _aggregate._d;
+                case 3: return _aggregate._f;
+                case 4: return _aggregate._a;
+                case 5: return _aggregate._c;
+                case 6: return _aggregate._e;
+                default: throw new Exception();
+            }
+        }
+
     }
-}
