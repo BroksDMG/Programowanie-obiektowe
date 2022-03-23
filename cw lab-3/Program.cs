@@ -16,6 +16,11 @@ class App
         Console.WriteLine(drum.Play());
 
         Console.WriteLine(new Musician<Keyboard>().ToString());
+        //c2
+        int[] arr = { 2, 3, 4, 6 };
+        var tuple = Exercise2.GetTuple2<int>(arr);
+        Console.WriteLine(tuple.Item1);
+        Console.WriteLine(tuple.Item2);
     }
 }
 
@@ -96,9 +101,13 @@ public class Exercise2
     //var tuple = GetTuple2<int>(arr);
     //tuple.firstAndLast    ==> {2, 6}
     //tuple.isSame          ==> false
-    public static ValueTuple<T[], bool> GetTuple2<T>(T[] arr)
+    public static ValueTuple<T[], bool> GetTuple2<T>(T[] input)
     {
-        throw new NotImplementedException();
+        T[] firstAndLast = new T[2];
+        firstAndLast[0] = input[0];
+        firstAndLast[1] = input[^1];
+        var isSame = firstAndLast[0].Equals(firstAndLast[1]);
+        return (firstAndLast, isSame);
     }
 }
 
@@ -117,6 +126,10 @@ public class Exercise3
     //W obu tablicach moga pojawić się wartości null, które też muszą być zliczane
     public static (T, int)[] countElements<T>(T[] arr, params T[] elements)
     {
-        throw new NotImplementedException();
+        var arraum = new (T, int)[elements.Length];
+        for (int i = 0; i < arr.Length; i++)
+        {
+
+        }
     }
 }
