@@ -11,10 +11,39 @@ class App
         Direction4 dir = Direction4.UP;
         var point2 = Exercise1.NextPoint(dir, point1, screen);
         Console.WriteLine(point2);
+        int[,] screen2 =
+      {
+        {1, 0, 0},
+        {0, 0, 0},
+        {0, 0, 0}
+    };
+        Console.WriteLine(Exercise2.DirectionTo(screen2, (1, 1), 1));
+
+        Car[] _cars = new Car[]
+      {
+    new Car(),
+    new Car(Model: "Fiat", true),
+    new Car(),
+    new Car(Power: 100),
+    new Car(Model: "Fiat", true),
+    new Car(Power: 125),
+    new Car()
+      };
+        Console.WriteLine(Exercise3.CarCounter(_cars));
+
+        Student[] students = {
+ new Student("Kowal","Adam", 'A'),
+ new Student("Nowak","Ewa", 'A')
+};
+        Exercise4.AssignStudentId(students);
+        foreach (var item in students)
+        {
+            Console.WriteLine(item);
+        }
     }
 }
 
-enum Direction4
+enum Direction8
 {
     UP,
     DOWN,
@@ -26,7 +55,7 @@ enum Direction4
     DOWN_RIGHT
 }
 
-enum Direction8
+enum Direction4
 {
     UP,
     DOWN,
@@ -41,7 +70,7 @@ enum Direction8
 //Pzzykład
 //dla danych wejściowych 
 //(int, int) point1 = (2, 4);
-//Direction dir = Direction.UP;
+//Direction4 dir = Direction4.UP;
 //var point2 = NextPoint(dir, point1);
 //w point2 powinny być wartości (2, 3);
 //Jeśli nowe położenie jest poza ekranem to metoda powinna zwrócić krotkę z point
@@ -103,7 +132,54 @@ class Exercise2
 
     public static Direction8 DirectionTo(int[,] screen, (int, int) point, int value)
     {
-        throw new NotImplementedException();
+
+        int px = point.Item1;
+        int py = point.Item2;
+        for (var i = 0; i < screen.GetLength(0); i++)
+        {
+            for (var j = 0; j < screen.GetLength(1); j++)
+            {
+                if (screen[i, j] == value)
+                {
+                    if (j < px && i == py)
+                    {
+                        return Direction8.LEFT;
+                    }
+                    if (j > px && i == py)
+                    {
+                        return Direction8.RIGHT;
+                    }
+                    if (j == px && i > py)
+                    {
+                        return Direction8.UP;
+                    }
+                    if (j == px && i == py)
+                    {
+                        return Direction8.DOWN;
+                    }
+                    if (j < px && i > py)
+                    {
+                        return Direction8.DOWN_LEFT;
+                    }
+                    if (j > px && i > py)
+                    {
+                        return Direction8.DOWN_RIGHT;
+                    }
+
+                    if (j < px && i < py)
+                    {
+                        return Direction8.UP_LEFT;
+                    }
+                    if (j > px && i < py)
+                    {
+                        return Direction8.UP_RIGHT;
+                    }
+                    break;
+                }
+            }
+        }
+        return Direction8.UP;
+
     }
 }
 
@@ -128,7 +204,11 @@ class Exercise3
 {
     public static int CarCounter(Car[] cars)
     {
-        throw new NotImplementedException();
+        foreach (var car in cars)
+        {
+            Console.WriteLine(car);
+        }
+        return 0;
     }
 }
 
@@ -150,6 +230,33 @@ class Exercise4
 {
     public static void AssignStudentId(Student[] students)
     {
+        int[] groupCounter = new int[] { 0, 0, 0 };
+        int counter = 0;
+        foreach (var student in students)
+        {
+            string nmbr = student.Group.ToString();
+            switch (student.Group)
+            {
+                case 'A':
+                    groupCounter[0]++;
+                    nmbr += string.Format("{0:000}", groupCounter[0]);
 
+                    break;
+                case 'B':
+                    groupCounter[1]++;
+                    nmbr += string.Format("{0:000}", groupCounter[1]);
+
+                    break;
+                case 'C':
+                    groupCounter[2]++;
+                    nmbr += string.Format("{0:000}", groupCounter[2]);
+
+                    break;
+            }
+            students[counter] = new Student(student.LastName, student.FirstName, student.Group, nmbr);
+
+            Console.WriteLine($"{student.LastName} {student.FirstName} '{student.Group}' - '{nmbr}'");
+            counter++;
+        }
     }
 }
