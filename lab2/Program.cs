@@ -109,6 +109,24 @@ namespace lab_2
     {
         static void Main(string[] args)
         {
+            //string input = Console.ReadLine();
+            //string[] array= input.Split(" ");
+            //double item1 = Convert.ToInt32(array[0]);
+            //double item2 = Convert.ToInt32(array[1]);
+            //double item3 = Convert.ToInt32(array[2]) ;
+            //if(item1<0&& item2 < 0 && item3 < 0)
+            //{
+            //    Console.WriteLine("Błędne dane.Długości boków muszą być dodatnie!");
+            //}else if(item1 + item2 < item3 && item1 + item3 < item2 && item2 + item3 < item1)
+            //{
+            //    Console.WriteLine("Błędne dane. Trójkąta nie można zbudować!");
+            //}
+
+
+            //Console.WriteLine(array[2]);
+
+
+
 
             Car car = new Car() { isEngineWorking = true, isFuel = true, MaxSpeed = 100 };
 

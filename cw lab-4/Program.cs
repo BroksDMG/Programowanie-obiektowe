@@ -7,39 +7,18 @@ class App
     public static void Main(string[] args)
     {
         (int, int) point1 = (2, 4);
-        (int, int) screen = (20, 40);
-        Direction4 dir = Direction4.UP;
-        var point2 = Exercise1.NextPoint(dir, point1, screen);
-        Console.WriteLine(point2);
-        int[,] screen2 =
-      {
-        {1, 0, 0},
-        {0, 0, 0},
-        {0, 0, 0}
-    };
-        Console.WriteLine(Exercise2.DirectionTo(screen2, (1, 1), 1));
-
-        Car[] _cars = new Car[]
-      {
-    new Car(),
-    new Car(Model: "Fiat", true),
-    new Car(),
-    new Car(Power: 100),
-    new Car(Model: "Fiat", true),
-    new Car(Power: 125),
-    new Car()
-      };
-        Console.WriteLine(Exercise3.CarCounter(_cars));
+        //record Car(string Model = "Audi", bool HasPlateNumber = false, int Power = 100);
 
         Student[] students = {
- new Student("Kowal","Adam", 'A'),
- new Student("Nowak","Ewa", 'A')
-};
+          new Student("Kowal","Adam", 'A'),
+          new Student("Nowak","Ewa", 'A'),
+          new Student("Kowal","Adam", 'B'),
+          new Student("Nowak","Ewa", 'B'),
+          new Student("Kowal","Adam", 'B'),
+          new Student("Nowak","Ewa", 'C')
+        };
         Exercise4.AssignStudentId(students);
-        foreach (var item in students)
-        {
-            Console.WriteLine(item);
-        }
+
     }
 }
 
@@ -80,27 +59,18 @@ class Exercise1
     {
         int x = point.Item1;
         int y = point.Item2;
-        int m_x = screenSize.Item1;
-        int m_y = screenSize.Item2;
-        switch (direction)
+        int sizex = screenSize.Item1;
+        int sizey = screenSize.Item2;
+        switch(direction)
         {
             case Direction4.UP:
-                return (x, y - 1 < 0 ? y : y - 1);
-
+               return( x,y - 1 <0? y : y - 1);
             case Direction4.DOWN:
-                return (x, y + 1 > m_y ? y : y + 1);
-
-            case Direction4.LEFT:
-                return (x - 1 < 0 ? x : x - 1, y);
-
-
-            case Direction4.RIGHT:
-                return (x + 1 > m_x ? x : x + 1, y);
-
+                return (x, y + 1 > sizey ? y : y + 1);
             default:
                 return (x, y);
-        }
-
+        };
+        
     }
 }
 //Cwiczenie 2
@@ -132,54 +102,7 @@ class Exercise2
 
     public static Direction8 DirectionTo(int[,] screen, (int, int) point, int value)
     {
-
-        int px = point.Item1;
-        int py = point.Item2;
-        for (var i = 0; i < screen.GetLength(0); i++)
-        {
-            for (var j = 0; j < screen.GetLength(1); j++)
-            {
-                if (screen[i, j] == value)
-                {
-                    if (j < px && i == py)
-                    {
-                        return Direction8.LEFT;
-                    }
-                    if (j > px && i == py)
-                    {
-                        return Direction8.RIGHT;
-                    }
-                    if (j == px && i > py)
-                    {
-                        return Direction8.UP;
-                    }
-                    if (j == px && i == py)
-                    {
-                        return Direction8.DOWN;
-                    }
-                    if (j < px && i > py)
-                    {
-                        return Direction8.DOWN_LEFT;
-                    }
-                    if (j > px && i > py)
-                    {
-                        return Direction8.DOWN_RIGHT;
-                    }
-
-                    if (j < px && i < py)
-                    {
-                        return Direction8.UP_LEFT;
-                    }
-                    if (j > px && i < py)
-                    {
-                        return Direction8.UP_RIGHT;
-                    }
-                    break;
-                }
-            }
-        }
-        return Direction8.UP;
-
+        throw new NotImplementedException();
     }
 }
 
@@ -204,10 +127,9 @@ class Exercise3
 {
     public static int CarCounter(Car[] cars)
     {
-        foreach (var car in cars)
-        {
-            Console.WriteLine(car);
-        }
+
+       
+      
         return 0;
     }
 }
@@ -230,33 +152,28 @@ class Exercise4
 {
     public static void AssignStudentId(Student[] students)
     {
-        int[] groupCounter = new int[] { 0, 0, 0 };
-        int counter = 0;
+        int[] counterGroup = new int[] { 0, 0, 0 };
         foreach (var student in students)
         {
-            string nmbr = student.Group.ToString();
+            string nmbr = student.Group.ToString() ;
             switch (student.Group)
             {
                 case 'A':
-                    groupCounter[0]++;
-                    nmbr += string.Format("{0:000}", groupCounter[0]);
-
+                    counterGroup[0]++;
+                    nmbr += string.Format("{0:000}", counterGroup[0]);
                     break;
                 case 'B':
-                    groupCounter[1]++;
-                    nmbr += string.Format("{0:000}", groupCounter[1]);
-
+                    counterGroup[1]++;
+                    nmbr += string.Format("{0:000}", counterGroup[1]);
                     break;
                 case 'C':
-                    groupCounter[2]++;
-                    nmbr += string.Format("{0:000}", groupCounter[2]);
-
+                    counterGroup[2]++;
+                    nmbr += string.Format("{0:000}", counterGroup[2]);
                     break;
-            }
-            students[counter] = new Student(student.LastName, student.FirstName, student.Group, nmbr);
 
+            }
             Console.WriteLine($"{student.LastName} {student.FirstName} '{student.Group}' - '{nmbr}'");
-            counter++;
         }
+
     }
 }
