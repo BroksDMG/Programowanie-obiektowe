@@ -6,11 +6,24 @@ class App
 {
     public static void Main(string[] args)
     {
-        var limitedHex = hex.GetLimitedHex(4);
-        while (limitedHex.MoveNext())
+        Exercise1<string> team = new Exercise1<string>() { Manager = "Adam", MemberA = "Ola", MemberB = "Ewa" };
+        foreach (var member in team)
         {
-            Console.WriteLine(limitedHex.Current);
+            Console.WriteLine(member);
         }
+        Console.WriteLine(string.Join(", ",team));
+
+
+        CurrencyRates rates = new CurrencyRates();
+        rates[Currency.EUR] = 4.6m;
+        Console.WriteLine(rates[Currency.EUR]);
+
+
+        //var limitedHex = hex.GetLimitedHex(4);
+        //while (limitedHex.MoveNext())
+        //{
+        //    Console.WriteLine(limitedHex.Current);
+        //}
     }
 }
 //Cwiczenie 1 (2 punkty)
@@ -25,11 +38,23 @@ class App
 //Adam
 //Ola
 //Ewa
-public class Exercise1<T>
+public class Exercise1<T>:IEnumerable<T>
 {
     public T Manager { get; init; }
     public T MemberA { get; init; }
     public T MemberB { get; init; }
+
+    public IEnumerator<T> GetEnumerator()
+    {
+        yield return Manager;
+        yield return MemberA;
+        yield return MemberB;
+    }
+
+    IEnumerator IEnumerable.GetEnumerator()
+    {
+        return GetEnumerator();
+    }
 }
 
 //Cwiczenie 2 (2 punkty)
@@ -51,6 +76,17 @@ enum Currency
 
 class CurrencyRates
 {
+    public decimal this[Currency cur]
+    {
+        get
+        {
+            return _rates[Convert.ToInt32(cur)];
+        }
+        set
+        {
+            _rates[Convert.ToInt32(cur)] = value;
+        }
+    }
     //utwórz tablicę o rozmiarze równym liczbie stalych wyliczeniowych Currency
     private decimal[] _rates = new decimal[Enum.GetValues<Currency>().Length];
 }
