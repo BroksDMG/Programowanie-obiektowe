@@ -33,7 +33,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "test-praktyczny", "test-pra
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "cw lav-8", "cw lav-8\cw lav-8.csproj", "{DB569254-2DCD-4805-B906-E1CA238C1164}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App-1", "App-1\App-1.csproj", "{8F8E2544-8CDA-44DC-ACF8-F0091F118EB6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App-1", "App-1\App-1.csproj", "{8F8E2544-8CDA-44DC-ACF8-F0091F118EB6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Projekt-Jakub-Skrzeczowski-Login-System", "Projekt-Jakub-Skrzeczowski-Login-System\Projekt-Jakub-Skrzeczowski-Login-System.csproj", "{8EF123AA-F467-48B8-94EC-3E6EA3119C0B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -105,6 +107,10 @@ Global
 		{8F8E2544-8CDA-44DC-ACF8-F0091F118EB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8F8E2544-8CDA-44DC-ACF8-F0091F118EB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8F8E2544-8CDA-44DC-ACF8-F0091F118EB6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8EF123AA-F467-48B8-94EC-3E6EA3119C0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8EF123AA-F467-48B8-94EC-3E6EA3119C0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8EF123AA-F467-48B8-94EC-3E6EA3119C0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8EF123AA-F467-48B8-94EC-3E6EA3119C0B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

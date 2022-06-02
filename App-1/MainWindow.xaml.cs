@@ -90,7 +90,18 @@ namespace App_1
         public MainWindow()
         {
             InitializeComponent();
-            DownloadDataJson();
+            try
+            {
+                DownloadDataJson();
+            }catch(WebException e)
+            {
+                MessageBox.Show("Problem z siecią!", "Bład połączenia");
+                //Properites który blokuje przycisk
+                CalcButton_.IsEnabled = false;
+            }catch(JsonException e)
+            {
+                MessageBox.Show("Niepoprawny format danych!","Błąd danych");
+            }
             UpdateGUI();
 
         }
