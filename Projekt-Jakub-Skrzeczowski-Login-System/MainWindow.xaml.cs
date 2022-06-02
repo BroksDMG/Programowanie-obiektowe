@@ -24,5 +24,10 @@ namespace Projekt_Jakub_Skrzeczowski_Login_System
         {
             InitializeComponent();
         }
+
+        private void toggleTheme(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
