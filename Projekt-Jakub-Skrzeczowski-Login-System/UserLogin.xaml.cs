@@ -35,11 +35,12 @@ namespace Projekt_Jakub_Skrzeczowski_Login_System
 
 
 
-        //public void GrandAcces()
-        //{
-        //    MainPages main = new MainPages();
-        //    main.Show();
-        //}
+        public void GrandAcces()
+        {
+            MainPages main = new MainPages();
+        
+            main.Show();
+        }
 
         private void Log_in_Click(object sender, RoutedEventArgs e)
         {
@@ -52,7 +53,7 @@ namespace Projekt_Jakub_Skrzeczowski_Login_System
                 bool userdound = contex.Users.Any(user => user.Name == Username && user.Password == Password);
                 if (userdound)
                 {
-                    //GrandAcces();
+                    GrandAcces();
                     Close();
                 }
                 else
