@@ -31,7 +31,9 @@
                     </StackPanel>
                 </materialDesign:PopupBox>
                 
-                <Image Margin="0 60 0 5" Source="blue-wolf.png" Height="100"/>
+                    
+                <Image Margin="0 60 0 5" Source="/blue-wolf.png" Height="120" Width="200" />
+                
 
                 <TextBlock Margin="0 25 0 5" HorizontalAlignment="Center" FontSize="28"
                            FontWeight="Bold" Text="Welcome Back!"/>
@@ -45,7 +47,11 @@
                              materialDesign:HintAssist.Hint="Enter Password" BorderThickness="2"
                              BorderBrush="{DynamicResource MaterialDesignDivider}" Style="{StaticResource 
                              MaterialDesignOutlinedPasswordBox}"/>
-
+                <Button Margin="0 20 0 0" x:Name="loginBtn" Style="{StaticResource MaterialDesignFlatMidBgButton}"
+                        materialDesign:ShadowAssist.ShadowDepth="Depth0" Height="52" Width="300" 
+                        materialDesign:ButtonAssist.CornerRadius="10" FontSize="18" Content="LOG IN" Cursor="Hand"/>
+                
+    
 
             </StackPanel>
         </materialDesign:DialogHost>
