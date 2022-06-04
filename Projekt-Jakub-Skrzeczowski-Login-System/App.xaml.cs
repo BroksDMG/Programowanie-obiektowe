@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 
 namespace Projekt_Jakub_Skrzeczowski_Login_System
 {
@@ -13,5 +14,15 @@ namespace Projekt_Jakub_Skrzeczowski_Login_System
     /// </summary>
     public partial class App : Application
     {
+
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            DatabaseFacade facade = new DatabaseFacade(new UserDataContext());
+            facade.EnsureCreated();
+
+
+        }
+
+
     }
 }

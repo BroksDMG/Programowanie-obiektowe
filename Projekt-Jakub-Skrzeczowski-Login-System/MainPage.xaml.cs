@@ -16,18 +16,13 @@ using System.Windows.Shapes;
 namespace Projekt_Jakub_Skrzeczowski_Login_System
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Logika interakcji dla klasy Page1.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainPages : Window
     {
-        public MainWindow()
+        public MainPages()
         {
             InitializeComponent();
-        }
-
-        private void toggleTheme(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }
