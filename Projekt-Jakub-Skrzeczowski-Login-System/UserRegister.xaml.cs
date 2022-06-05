@@ -42,8 +42,13 @@ namespace Projekt_Jakub_Skrzeczowski_Login_System
             var Email = txtUsermail.Text;
             using (UserDataContext context =new UserDataContext())
             {
-                context.Users.Add(new User() { Name = Username, Password = Password, UserEmail = Email });
-                context.SaveChanges();
+                
+                    context.Users.Add(new User() { Name = Username, Password = Password, UserEmail = Email });
+                    context.SaveChanges();
+                    MessageBox.Show("you created an account");
+                    LoginAcces();
+
+
             }
         }
     }
