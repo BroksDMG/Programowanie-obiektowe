@@ -34,7 +34,11 @@ namespace Projekt_Jakub_Skrzeczowski_Login_System
 
 
 
-
+        public void RegisterAcces()
+        {
+            UserRegister register = new UserRegister();
+            register.Show();
+        }
         public void GrandAcces()
         {
             MainPages main = new MainPages();
@@ -46,12 +50,13 @@ namespace Projekt_Jakub_Skrzeczowski_Login_System
         {
             var Username = txtUsername.Text;
             var Password = txtPassword.Password;
+            var Email = txtUsername.Text;
 
 
             using(UserDataContext contex = new UserDataContext())
             {
-                bool userdound = contex.Users.Any(user => user.Name == Username && user.Password == Password);
-                if (userdound)
+                bool userfound = contex.Users.Any(user => (user.Name == Username && user.Password == Password)||(user.UserEmail==Email&&user.Password==Password));
+                if (userfound)
                 {
                     GrandAcces();
                     Close();
@@ -62,6 +67,12 @@ namespace Projekt_Jakub_Skrzeczowski_Login_System
                 }
             }
 
+        }
+
+        private void Register_Click(object sender, RoutedEventArgs e)
+        {
+            RegisterAcces();
+            Close();
         }
     }
 }
