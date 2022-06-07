@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MaterialDesignThemes.Wpf;
 
 namespace Projekt_Jakub_Skrzeczowski_Login_System
 {
@@ -24,16 +25,8 @@ namespace Projekt_Jakub_Skrzeczowski_Login_System
         {
             InitializeComponent();
         }
-
-        private void toggleTheme(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-
-
-
-
+       
+        
         public void RegisterAcces()
         {
             UserRegister register = new UserRegister();

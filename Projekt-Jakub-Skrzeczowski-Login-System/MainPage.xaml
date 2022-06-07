@@ -20,8 +20,10 @@
 
             <StackPanel>
 
-                <TextBlock Margin="0 25 0 5" HorizontalAlignment="center" FontSize="28"
+                <TextBlock Margin="0 25 0 50" HorizontalAlignment="center" FontSize="28"
                            FontWeight="Bold" Text="Welcome " VerticalAlignment="Center" />
+                <TextBlock Margin="0 200 0 5" HorizontalAlignment="center" FontSize="28"
+                           FontWeight="Bold" Text="App content " VerticalAlignment="Center" />
                 
             </StackPanel>
                 
